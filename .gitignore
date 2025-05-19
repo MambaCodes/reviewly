@@ -172,3 +172,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Project-specific output files
+pr_checklist.md
+cache/
+*.json
+
+# Environment variables
+.env
+.env.*

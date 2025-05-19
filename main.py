@@ -1,17 +1,16 @@
 """Main entry point for reviewly."""
-import asyncio
 from rich import print
 from reviewly.config import get_config
 from reviewly.github_client import GitHubClient
 from reviewly.analyzer import DeepseekAnalyzer
 
-async def main():
+def main():
     """Main function."""
     # Load configuration
     config = get_config()
     
     # Initialize clients
-    github_client = GitHubClient(config.github_token, config.github_repo_url)
+    github_client = GitHubClient(config.github_token, config.github_repo_url, cache_dir="./cache")
     analyzer = DeepseekAnalyzer(config.deepseek_api_key)
     
     try:
@@ -27,7 +26,7 @@ async def main():
         
         # Analyze reviews
         print("[bold blue]Analyzing reviews with DeepSeek...[/bold blue]")
-        checklist = await analyzer.analyze_reviews(reviews)
+        checklist = analyzer.analyze_reviews(reviews)
         
         # Save results
         output_file = "pr_checklist.md"
@@ -42,4 +41,4 @@ async def main():
         print(f"[bold red]Error: {str(e)}[/bold red]")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
