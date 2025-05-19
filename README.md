@@ -25,15 +25,13 @@ Code reviews often catch the same types of issues repeatedly, leading to multipl
 1. Clone the repository:
 
    ```powershell
-   git clone https://github.com/yourusername/reviewly.git
+   git clone https://github.com/MambaCodes/reviewly.git
    cd reviewly
    ```
 
-2. Create a virtual environment and install dependencies:
+2. Install dependencies using uv:
 
    ```powershell
-   python -m venv .venv
-   .\.venv\Scripts\activate
    uv pip install -e .
    ```
 
